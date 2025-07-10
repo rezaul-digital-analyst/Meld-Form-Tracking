@@ -1,0 +1,21 @@
+<script>
+  (function() {
+    var form = document.querySelector('form.meld-form');
+    if (form) {
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        var formData = new FormData(form);
+        var formObject = {};
+        formData.forEach(function(value, key) {
+          formObject[key] = value;
+        });
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+          event: 'meld_form_submit',
+          formData: formObject
+        });
+        form.submit();
+      });
+    }
+  })();
+</script>
